@@ -1,11 +1,11 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761579599
+::res://::1761580639
 icon.svg::CompressedTexture2D::6106373560488697390::1761314351::1761314374::1::::<><><>0<>0<>7c5cf4f267f02124f23568ea6c9e67e0<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+imagem1.png::CompressedTexture2D::8616004892684984699::1761410459::1761580639::1::::<><><>0<>0<>f3c88fdb969403633e50f6443c4e07c1<>res://.godot/imported/imagem1.png-8474fc58efa713d075d0da3a8639c193.ctex::
+imagem2.png::CompressedTexture2D::7293039535344882215::1761411524::1761580639::1::::<><><>0<>0<>32eae754cd0895ac33ca50a932fafb1c<>res://.godot/imported/imagem2.png-a71800e61f600d388dea0f6d918bdec7.ctex::
+imagem3.png::CompressedTexture2D::8419144258268091478::1761411575::1761580639::1::::<><><>0<>0<>dc39b05a14b381e3d7129995c417cc06<>res://.godot/imported/imagem3.png-bab1d542ce9241aaf81c2d2d9683e518.ctex::
 README.md::TextFile::-1::1761415168::0::1::::<><><>0<>0<><>::
-::res://Imagens/::1761411699
-imagem1.png::CompressedTexture2D::8616004892684984699::1761410459::1761411699::1::::<><><>0<>0<>38e7b66bdfbe11da2a83ba83250fe480<>res://.godot/imported/imagem1.png-dcdb80047eb04032111143170108dc5d.ctex::
-imagem2.png::CompressedTexture2D::7293039535344882215::1761411524::1761411699::1::::<><><>0<>0<>79f243fc89d41dd1a1f0be4fb6c29eab<>res://.godot/imported/imagem2.png-b637ed714ec407c6b4e359e123e364ec.ctex::
-imagem3.png::CompressedTexture2D::8419144258268091478::1761411575::1761411699::1::::<><><>0<>0<>d06f6c71c2ae76054ca58309799412be<>res://.godot/imported/imagem3.png-c2d2d301794f423069041ac668ef38de.ctex::
+::res://Imagens/::1761580639
 ::res://src/::1761411690
 ::res://src/cenas/::1761421607
 mundo.tscn::PackedScene::4404306666573698203::1761421607::0::1::::<><><>0<>0<><>::uid://cs88cy6uubs4e::::res://icon.svg<>uid://dy77j0koar8it::::res://src/roteiros/arrastavel.gd
