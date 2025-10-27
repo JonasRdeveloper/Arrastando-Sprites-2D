@@ -8,11 +8,11 @@ Este projeto tem como objetivo demonstrar como o domínio dos eventos de entrada
  - <a href="#tecnologias">Tecnologias</a>
 
 ## 🧩Layout
- ![Icones arrastaveis](imagem1.png)
+ ![Icones arrastaveis](./imagem1.png/)
 
- ![Código primeira parte](imagem2.png)
+ ![Código primeira parte](./imagem2.png/)
 
- ![Código segunda parte](imagem3.png)
+ ![Código segunda parte](./imagem2.png/)
 
 ## Como executar este projeto?
 
