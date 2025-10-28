@@ -1,29 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b30qj1e4xcwbb"]
+[gd_scene load_steps=2 format=3 uid="uid://b30qj1e4xcwbb"]
 
-[ext_resource type="Texture2D" uid="uid://cs88cy6uubs4e" path="res://icon.svg" id="1_cyidh"]
-[ext_resource type="Script" uid="uid://dy77j0koar8it" path="res://src/roteiros/arrastavel.gd" id="2_fu5eb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fu5eb"]
-size = Vector2(112, 116)
+[ext_resource type="PackedScene" uid="uid://ht38uxsqi2i7" path="res://src/cenas/arrastavel.tscn" id="1_cyidh"]
 
 [node name="Mundo" type="Node2D"]
 
-[node name="Arrastavel" type="Sprite2D" parent="."]
+[node name="Arrastavel2" parent="." instance=ExtResource("1_cyidh")]
+position = Vector2(377, 326)
+
+[node name="Formato_colisao" parent="Arrastavel2/Area_de_deteccao" index="0"]
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Arrastavel" parent="." instance=ExtResource("1_cyidh")]
 position = Vector2(557, 322)
-texture = ExtResource("1_cyidh")
-script = ExtResource("2_fu5eb")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Arrastavel"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrastavel/CharacterBody2D"]
-shape = SubResource("RectangleShape2D_fu5eb")
-
-[node name="Arrastavel2" type="Sprite2D" parent="."]
-position = Vector2(355, 326)
-texture = ExtResource("1_cyidh")
-script = ExtResource("2_fu5eb")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Arrastavel2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arrastavel2/CharacterBody2D"]
-shape = SubResource("RectangleShape2D_fu5eb")
+[editable path="Arrastavel2"]

@@ -1,0 +1,80 @@
+extends Sprite2D
+
+@onready var area_de_deteccao: Area2D = get_node("Area_de_deteccao")
+
+const MASCARA_DE_COLISAO_CARTA: int = 1
+
+var arrastando: bool = false
+var pairando_sobre_a_carta: bool = false
+var offset_mouse: Vector2 = Vector2.ZERO
+
+func _ready() -> void:
+	area_de_deteccao.mouse_entered.connect(_ligar_mouse_de_entrada)
+	area_de_deteccao.mouse_exited.connect(_ligar_mouse_de_saida)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var clicado := _check_se_foi_clicado()
+			if clicado == self:
+				arrastando = true
+				offset_mouse = to_local(event.position)
+		else:
+			arrastando = false
+
+	elif event is InputEventMouseMotion and arrastando:
+		if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+			var nova_posicao = event.position - offset_mouse
+			var tamanho_tela := get_viewport_rect().size
+			var tamanho_carta := get_rect().size
+
+			nova_posicao.x = clamp(nova_posicao.x, 0, tamanho_tela.x - tamanho_carta.x)
+			nova_posicao.y = clamp(nova_posicao.y, 0, tamanho_tela.y - tamanho_carta.y)
+
+			position = nova_posicao
+
+func _check_se_foi_clicado() -> Sprite2D:
+	var space_state := get_world_2d().direct_space_state
+	var parametros := PhysicsPointQueryParameters2D.new()
+	parametros.position = get_global_mouse_position()
+	parametros.collide_with_areas = true
+	parametros.collision_mask = MASCARA_DE_COLISAO_CARTA
+
+	var resultado := space_state.intersect_point(parametros)
+	if resultado.size() > 0:
+		return obter_carta_com_o_maior_indice_z(resultado)
+	return null
+
+func _ligar_mouse_de_entrada() -> void:
+	if not pairando_sobre_a_carta:
+		pairando_sobre_a_carta = true
+		destacar_carta(self, true)
+
+func _ligar_mouse_de_saida() -> void:
+	destacar_carta(self, false)
+	var nova_carta_pairando := _check_se_foi_clicado()
+	if nova_carta_pairando:
+		destacar_carta(nova_carta_pairando, true)
+	else:
+		pairando_sobre_a_carta = false
+
+func destacar_carta(carta: Sprite2D, pairou: bool) -> void:
+	if carta:
+		carta.scale = Vector2(1.05, 1.05) if pairou else Vector2.ONE
+		carta.z_index = 2 if pairou else 1
+
+func obter_carta_com_o_maior_indice_z(cartas: Array[Dictionary]) -> Sprite2D:
+	if cartas.is_empty():
+		return null
+
+	var carta_com_z_mais_alto = cartas[0].collider.get_parent()
+	var indice_z_mais_alto = carta_com_z_mais_alto.get_z_index()
+
+	for i in range(1, cartas.size()):
+		var carta_atual = cartas[i].collider.get_parent()
+		var indice_z_atual = carta_atual.get_z_index()
+		if indice_z_atual > indice_z_mais_alto:
+			carta_com_z_mais_alto = carta_atual
+			indice_z_mais_alto = indice_z_atual
+
+	return carta_com_z_mais_alto

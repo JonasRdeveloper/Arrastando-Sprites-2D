@@ -1,2 +1,4 @@
-res://README.md
 res://src/cenas/mundo.tscn
+res://src/roteiros/arrastavel.gd
+res://src/cenas/arrastavel.tscn
+res://click.txt

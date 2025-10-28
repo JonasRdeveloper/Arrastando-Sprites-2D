@@ -1,12 +1,12 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1761581032
+::res://::1761659158
 icon.svg::CompressedTexture2D::6106373560488697390::1761314351::1761314374::1::::<><><>0<>0<>7c5cf4f267f02124f23568ea6c9e67e0<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 imagem1.png::CompressedTexture2D::8616004892684984699::1761410459::1761580639::1::::<><><>0<>0<>f3c88fdb969403633e50f6443c4e07c1<>res://.godot/imported/imagem1.png-8474fc58efa713d075d0da3a8639c193.ctex::
 imagem2.png::CompressedTexture2D::7293039535344882215::1761411524::1761580639::1::::<><><>0<>0<>32eae754cd0895ac33ca50a932fafb1c<>res://.godot/imported/imagem2.png-a71800e61f600d388dea0f6d918bdec7.ctex::
 imagem3.png::CompressedTexture2D::8419144258268091478::1761411575::1761580639::1::::<><><>0<>0<>dc39b05a14b381e3d7129995c417cc06<>res://.godot/imported/imagem3.png-bab1d542ce9241aaf81c2d2d9683e518.ctex::
-README.md::TextFile::-1::1761580762::0::1::::<><><>0<>0<><>::
+README.md::TextFile::-1::1761583682::0::1::::<><><>0<>0<><>::
 ::res://src/::1761411690
-::res://src/cenas/::1761580796
-mundo.tscn::PackedScene::4404306666573698203::1761580796::0::1::::<><><>0<>0<><>::uid://cs88cy6uubs4e::::res://icon.svg<>uid://dy77j0koar8it::::res://src/roteiros/arrastavel.gd
+::res://src/cenas/::1761581996
+mundo.tscn::PackedScene::4404306666573698203::1761581996::0::1::::<><><>0<>0<><>::uid://cs88cy6uubs4e::::res://icon.svg<>uid://dy77j0koar8it::::res://src/roteiros/arrastavel.gd
 ::res://src/roteiros/::1761421607
 arrastavel.gd::GDScript::8911814731604264431::1761421607::0::1::::<>Sprite2D<><>0<>0<><>::
