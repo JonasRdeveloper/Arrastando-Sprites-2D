@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b30qj1e4xcwbb"]
+[gd_scene load_steps=6 format=3 uid="uid://b30qj1e4xcwbb"]
 
+[ext_resource type="Script" uid="uid://oouefwjo36b3" path="res://src/roteiros/mundo.gd" id="1_0am0h"]
 [ext_resource type="PackedScene" uid="uid://ht38uxsqi2i7" path="res://src/cenas/arrastavel.tscn" id="1_cyidh"]
-[ext_resource type="Script" uid="uid://csoxtwje0tb55" path="res://src/roteiros/referencia_posicao.gd" id="2_fu5eb"]
+[ext_resource type="PackedScene" uid="uid://duf70guy43gwf" path="res://src/cenas/referencia_posicao.tscn" id="2_fu5eb"]
+[ext_resource type="Script" uid="uid://dj73ahhwuuphd" path="res://src/roteiros/mao_de_cartas.gd" id="3_fchh8"]
+
+[sub_resource type="Curve2D" id="Curve2D_0am0h"]
 
 [node name="Mundo" type="Control"]
 layout_mode = 3
@@ -10,37 +14,83 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0am0h")
 metadata/_edit_lock_ = true
 
 [node name="Arrastavel" parent="." instance=ExtResource("1_cyidh")]
+visible = false
 layout_mode = 0
-offset_left = 225.0
-offset_top = 285.0
-offset_right = 353.0
-offset_bottom = 413.0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 640.0
+offset_bottom = 384.0
 pivot_offset = Vector2(64, 64)
 
 [node name="Arrastavel2" parent="." instance=ExtResource("1_cyidh")]
+visible = false
 layout_mode = 0
-offset_left = 167.0
-offset_top = 169.0
-offset_right = 295.0
-offset_bottom = 297.0
+offset_left = 200.0
+offset_top = 480.0
+offset_right = 328.0
+offset_bottom = 608.0
 pivot_offset = Vector2(64, 64)
 
-[node name="Referencia_posicao" type="ReferenceRect" parent="." groups=["largavel"]]
+[node name="Referencia_posicao" parent="." instance=ExtResource("2_fu5eb")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -67.0
+offset_left = -88.0
 offset_top = -91.0
-offset_right = 67.0
+offset_right = 88.0
 offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 2
-border_width = 5.0
-editor_only = false
-script = ExtResource("2_fu5eb")
+
+[node name="Referencia_posicao2" parent="." instance=ExtResource("2_fu5eb")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 271.0
+offset_top = 124.0
+offset_right = 447.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Referencia_posicao3" parent="." instance=ExtResource("2_fu5eb")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 124.0
+offset_right = -224.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mao_de_cartas" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 98.0
+offset_right = 61.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+script = ExtResource("3_fchh8")
+curve = SubResource("Curve2D_0am0h")
+max_rotation = 0.0

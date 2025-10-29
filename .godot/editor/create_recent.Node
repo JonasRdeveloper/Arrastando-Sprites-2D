@@ -1,5 +1,6 @@
-ReferenceRect
 Control
+Line2D
+ReferenceRect
 TextureRect
 CollisionShape2D
 Area2D

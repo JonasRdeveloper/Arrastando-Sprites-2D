@@ -41,7 +41,7 @@ func _on_item_soltou(_posicao_global: Vector2, item: TextureRect) -> void:
 		return
 
 	var alvo := _calcular_centro_para_item(item)
-	get_tree().create_tween().tween_property(item, "global_position", alvo, tempo_encaixe).set_ease(Tween.EASE_OUT)
+	get_tree().create_tween().tween_property(item, "global_position", alvo, tempo_encaixe).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
 func _rect_intersection(a: Rect2, b: Rect2) -> Rect2:
 	var x1 = max(a.position.x, b.position.x)

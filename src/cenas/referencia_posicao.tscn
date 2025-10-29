@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://duf70guy43gwf"]
+
+[ext_resource type="Script" uid="uid://csoxtwje0tb55" path="res://src/roteiros/referencia_posicao.gd" id="1_5t8h6"]
+
+[node name="Referencia_posicao" type="ReferenceRect"]
+offset_right = 176.0
+offset_bottom = 182.0
+pivot_offset = Vector2(88, 91)
+border_width = 5.0
+editor_only = false
+script = ExtResource("1_5t8h6")
+tempo_encaixe = 0.1

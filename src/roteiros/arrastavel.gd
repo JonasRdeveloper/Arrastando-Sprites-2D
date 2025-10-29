@@ -47,6 +47,8 @@ func _gui_input(event: InputEvent) -> void:
 		global_position = nova_pos
 
 func _emitir_soltou() -> void:
+	#var interpolar: Tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
+	#interpolar.tween_property(self, 'scale', Vector2.ONE, .1)
 	# comportamento padrão ao soltar: nada além do sinal
 	# se quiser animar de volta quando for solto fora de alvo, faça aqui
 	pass
@@ -61,7 +63,7 @@ func _limitar_ao_pai(posicao_global: Vector2) -> Vector2:
 	local_pos.x = clamp(local_pos.x, 0.0, max(0.0, pai_rect.size.x - tamanho_self.x))
 	local_pos.y = clamp(local_pos.y, 0.0, max(0.0, pai_rect.size.y - tamanho_self.y))
 	return pai_rect.position + local_pos
-
+## ho
 # Feedback visual / estados de mouse
 func _on_mouse_entered() -> void:
 	_mouse_over = true

@@ -1,5 +1,6 @@
 res://src/cenas/mundo.tscn
-res://src/roteiros/arrastavel.gd
-res://src/cenas/arrastavel.tscn
-res://src/roteiros/global.gd
 res://src/roteiros/referencia_posicao.gd
+res://src/cenas/referencia_posicao.tscn
+res://src/roteiros/arrastavel.gd
+res://src/roteiros/mao_de_cartas.gd
+res://src/roteiros/mundo.gd
