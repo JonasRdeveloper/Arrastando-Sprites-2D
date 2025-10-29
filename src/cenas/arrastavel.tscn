@@ -1,25 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ht38uxsqi2i7"]
+[gd_scene load_steps=3 format=3 uid="uid://ht38uxsqi2i7"]
 
 [ext_resource type="Texture2D" uid="uid://cs88cy6uubs4e" path="res://icon.svg" id="1_wrxmn"]
 [ext_resource type="Script" uid="uid://dy77j0koar8it" path="res://src/roteiros/arrastavel.gd" id="2_fp50a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fu5eb"]
-size = Vector2(112, 116)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fchh8"]
-size = Vector2(110, 118)
-
-[node name="Arrastavel" type="Sprite2D"]
+[node name="Arrastavel" type="TextureRect"]
 texture = ExtResource("1_wrxmn")
 script = ExtResource("2_fp50a")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="Formato_colisao" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_fu5eb")
-
-[node name="Area_de_deteccao" type="Area2D" parent="."]
-
-[node name="Formato_colisao" type="CollisionShape2D" parent="Area_de_deteccao"]
-shape = SubResource("RectangleShape2D_fchh8")
-debug_color = Color(1, 1, 0, 0.41960785)

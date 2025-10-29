@@ -1,4 +1,5 @@
 res://src/cenas/mundo.tscn
 res://src/roteiros/arrastavel.gd
 res://src/cenas/arrastavel.tscn
-res://click.txt
+res://src/roteiros/global.gd
+res://src/roteiros/referencia_posicao.gd

@@ -1,54 +1,74 @@
-extends Sprite2D
+extends TextureRect
 
-@onready var area_de_deteccao := $Area_de_deteccao as Area2D
+signal soltou(nova_posicao_global: Vector2, item: TextureRect)
 
-const MASCARA_DE_COLISAO_CARTA: int = 1
+@export_category("Configurações")
+@export var permitir_arrasto: bool = true
+@export var trancar_ao_pai: bool = false
 
-var arrastando := false
-var offset_mouse := Vector2.ZERO
+var _arrastando: bool = false
+var _deslocamento_arrasto: Vector2 = Vector2.ZERO
+var _posicao_inicial: Vector2 = Vector2.ZERO
+var _mouse_over: bool = false
 
 func _ready() -> void:
-	area_de_deteccao.mouse_entered.connect(_ligar_mouse_de_entrada)
-	area_de_deteccao.mouse_exited.connect(_ligar_mouse_de_saida)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	focus_mode = Control.FOCUS_NONE
+	_posicao_inicial = global_position
+	call_deferred("move_to_front")
+	# conecta sinais nativos para feedback (pode fazer no editor também)
+	if not is_connected("mouse_entered", Callable(self, "_on_mouse_entered")):
+		connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	if not is_connected("mouse_exited", Callable(self, "_on_mouse_exited")):
+		connect("mouse_exited", Callable(self, "_on_mouse_exited"))
+	# opcional: adicionar ao grupo para referência externa
+	if not is_in_group("draggable"):
+		add_to_group("draggable")
 
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
+	if not permitir_arrasto:
+		return
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			var clicado := _check_se_foi_clicado()
-			if clicado == self:
-				arrastando = true
-				offset_mouse = to_local(event.position)
-				move_to_front()  # Garante que fique por cima dos irmãos
+			_arrastando = true
+			_deslocamento_arrasto = get_global_mouse_position() - global_position
+			move_to_front()
 		else:
-			arrastando = false
-			
-	elif event is InputEventMouseMotion:
-		if event.button_mask & MOUSE_BUTTON_MASK_LEFT and arrastando:
-			var nova_posicao = event.position - offset_mouse
-			var tamanho_tela := get_viewport_rect().size
-			nova_posicao.x = clamp(nova_posicao.x, 0, tamanho_tela.x - get_rect().size.x)
-			nova_posicao.y = clamp(nova_posicao.y, 0, tamanho_tela.y - get_rect().size.y)
-			position = nova_posicao
+			if _arrastando:
+				_arrastando = false
+				_emitir_soltou()
+				emit_signal("soltou", global_position, self)
 
-func _check_se_foi_clicado() -> Node:
-	var space_state := get_world_2d().direct_space_state
-	var parametros := PhysicsPointQueryParameters2D.new()
-	parametros.position = get_global_mouse_position()
-	parametros.collide_with_areas = true
-	parametros.collision_mask = MASCARA_DE_COLISAO_CARTA
+	elif event is InputEventMouseMotion and _arrastando:
+		var nova_pos := get_global_mouse_position() - _deslocamento_arrasto
+		if trancar_ao_pai and get_parent() is Control:
+			nova_pos = _limitar_ao_pai(nova_pos)
+		global_position = nova_pos
 
-	var resultado := space_state.intersect_point(parametros)
-	if resultado.size() > 0:
-		return resultado[0].collider.get_parent()
-	return null
-	
-func _ligar_mouse_de_entrada() -> void:
-	destacar_carta(self, true)
-	
-func _ligar_mouse_de_saida() -> void:
-	destacar_carta(self, false)
-	
-func destacar_carta(carta: Sprite2D, pairou: bool) -> void:
-	if carta and not arrastando:
-		carta.scale = Vector2(1.05, 1.05) if pairou else Vector2.ONE
-		carta.z_index = 2 if pairou else 1
+func _emitir_soltou() -> void:
+	# comportamento padrão ao soltar: nada além do sinal
+	# se quiser animar de volta quando for solto fora de alvo, faça aqui
+	pass
+
+func _limitar_ao_pai(posicao_global: Vector2) -> Vector2:
+	var pai := get_parent() as Control
+	if not pai:
+		return posicao_global
+	var pai_rect := pai.get_global_rect()
+	var local_pos := posicao_global - pai_rect.position
+	var tamanho_self: Vector2 = size
+	local_pos.x = clamp(local_pos.x, 0.0, max(0.0, pai_rect.size.x - tamanho_self.x))
+	local_pos.y = clamp(local_pos.y, 0.0, max(0.0, pai_rect.size.y - tamanho_self.y))
+	return pai_rect.position + local_pos
+
+# Feedback visual / estados de mouse
+func _on_mouse_entered() -> void:
+	_mouse_over = true
+	scale = Vector2(1.05, 1.05)
+	modulate = Color(0.732, 0.0, 0.009, 1.0)
+
+func _on_mouse_exited() -> void:
+	_mouse_over = false
+	scale = Vector2(1.0, 1.0)
+	modulate = Color(0.625, 0.758, 0.719, 1.0)

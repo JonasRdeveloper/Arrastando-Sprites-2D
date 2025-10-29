@@ -1,16 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://b30qj1e4xcwbb"]
+[gd_scene load_steps=3 format=3 uid="uid://b30qj1e4xcwbb"]
 
 [ext_resource type="PackedScene" uid="uid://ht38uxsqi2i7" path="res://src/cenas/arrastavel.tscn" id="1_cyidh"]
+[ext_resource type="Script" uid="uid://csoxtwje0tb55" path="res://src/roteiros/referencia_posicao.gd" id="2_fu5eb"]
 
-[node name="Mundo" type="Node2D"]
-
-[node name="Arrastavel2" parent="." instance=ExtResource("1_cyidh")]
-position = Vector2(377, 326)
-
-[node name="Formato_colisao" parent="Arrastavel2/Area_de_deteccao" index="0"]
-debug_color = Color(1, 0, 0, 0.41960785)
+[node name="Mundo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Arrastavel" parent="." instance=ExtResource("1_cyidh")]
-position = Vector2(557, 322)
+layout_mode = 0
+offset_left = 225.0
+offset_top = 285.0
+offset_right = 353.0
+offset_bottom = 413.0
+pivot_offset = Vector2(64, 64)
 
-[editable path="Arrastavel2"]
+[node name="Arrastavel2" parent="." instance=ExtResource("1_cyidh")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 169.0
+offset_right = 295.0
+offset_bottom = 297.0
+pivot_offset = Vector2(64, 64)
+
+[node name="Referencia_posicao" type="ReferenceRect" parent="." groups=["largavel"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -91.0
+offset_right = 67.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 5.0
+editor_only = false
+script = ExtResource("2_fu5eb")
